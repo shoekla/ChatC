@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="Bootstrap Admin App + jQuery">
+   <meta name="keywords" content="app, responsive, jquery, bootstrap, dashboard, admin">
+   <title>ChatC</title>
+   <link rel="icon" href="{{ url_for('static', filename='img/brain.png')}}">
+   <!-- =============== VENDOR STYLES ===============-->
+   <!-- FONT AWESOME-->
+
+   <!-- =============== PAGE VENDOR STYLES ===============-->
+   <!-- WEATHER ICONS-->
+   <!--
+
+    <link href="{{ url_for('static', filename='css/plugins/animate.css')}}" rel="stylesheet">
+    -->
+
+
+
+   <link rel="stylesheet" href="../vendor/weather-icons/css/weather-icons.min.css">
+   <!-- =============== BOOTSTRAP STYLES ===============-->
+
+    <link href="{{ url_for('static', filename='css/bootstrap.css')}}" rel="stylesheet" id ="bscss">
+   <link rel="stylesheet" href="css/bootstrap.css" id="bscss">
+   <!-- =============== APP STYLES ===============-->
+
+    <link href="{{ url_for('static', filename='css/app.css')}}" rel="stylesheet" id="maincc">
+   <link rel="stylesheet" href="css/app.css" id="maincss">
+
+    <script src="{{ url_for('static', filename='ga.js')}}"></script>
+   <script src="ga.js"></script>
+</head>
+
+<body>
+   <div class="wrapper">
+      <!-- top navbar-->
+      <header class="topnavbar-wrapper">
+         <!-- START Top Navbar-->
+         <nav role="navigation" class="navbar topnavbar">
+            <!-- START navbar header-->
+            <div class="navbar-header">
+              <h2 style="color:white">ChatC</h2>
+            </div>
+            <!-- END navbar header-->
+           
+            <!-- END Nav wrapper-->
+            <!-- START Search form-->
+            <form role="search" action="search.html" class="navbar-form">
+               <div class="form-group has-feedback">
+                  <input type="text" placeholder="Type and hit enter ..." class="form-control">
+                  <div data-search-dismiss="" class="fa fa-times form-control-feedback"></div>
+               </div>
+               <button type="submit" class="hidden btn btn-default">Submit</button>
+            </form>
+            <!-- END Search form-->
+         </nav>
+         <!-- END Top Navbar-->
+      </header>
+      <!-- sidebar-->
+      <aside class="aside">
+         <!-- START Sidebar (left)-->
+         <div class="aside-inner">
+            <nav data-sidebar-anyclick-close="" class="sidebar">
+               <!-- START sidebar nav-->
+               <ul class="nav">
+                  <!-- START user info-->
+                 
+                  <!-- END user info-->
+                  <!-- Iterates over all sidebar items-->
+                  <li class="nav-heading ">
+                     <span data-localize="sidebar.heading.HEADER">What To Do???</span>
+                  </li>
+                  <li class="active">
+                     <a href="/chatC" title="Dashboard" data-toggle="collapse">
+                        <div class="pull-right label label-info">:)</div>
+                        <em class="icon-speedometer"></em>
+                        <span data-localize="sidebar.nav.DASHBOARD">Let's Chat!</span>
+                     </a>
+                  
+                  </li>
+                  <li class=" ">
+                     <a href="/chatC/addPhraseToArtMenu/" title="Widgets">
+                        <div class="pull-right label label-success">{{numP}}</div>
+                        <em class="icon-grid"></em>
+                        <span data-localize="sidebar.nav.WIDGETS">Add Phrase</span>
+                     </a>
+                  </li>
+                  <li class=" ">
+                     <a href="/chatC/addLink/" title="Layouts" data-toggle="collapse">
+
+                        <div class="pull-right label label-success">CS</div>
+                        <em class="icon-layers"></em>
+                        <span>Add Link</span>
+                     </a>
+                     <ul id="layout" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Layouts</li>
+                        <li class=" ">
+                           <a href="dashboard_h.html" title="Horizontal">
+                              <span>Horizontal</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                   <li class=" ">
+                     <a href="/chatC/addRand/" title="Layouts" data-toggle="collapse">
+
+                        <div class="pull-right label label-success">{{randL}}</div>
+                        <em class="icon-layers"></em>
+                        <span>Add Rand-Response</span>
+                     </a>
+                     <ul id="layout" class="nav sidebar-subnav collapse">
+                        <li class="sidebar-subnav-header">Layouts</li>
+                        <li class=" ">
+                           <a href="dashboard_h.html" title="Horizontal">
+                              <span>Horizontal</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                 </ul>
+               <!-- END sidebar nav-->
+            </nav>
+         </div>
+         <!-- END Sidebar (left)-->
+      </aside>
+      <!-- offsidebar-->
+     
+      <!-- Main section-->
+      <section>
+         <!-- Page c-->
+            <!-- END widgets box-->
+           
+             <br/>
+                     <div class="col-lg-12">
+                        <div class="panel panel-default">
+                           <div class="panel-heading">
+                              <div class="panel-title">Our Chat</div>
+                              <hr>
+                           </div>
+                           <!-- START list group-->
+                           <div data-height="180" data-scrollable="" class="list-group">
+              
+
+
+                                  {% for sp in arr %}
+                              <!-- START list group item-->
+                               {% if sp.startswith('(ME)') %}
+                              <a href="#" class="list-group-item">
+                                 <div class="media-box">
+                                    <div class="pull-left">
+                                       <img src="{{ url_for('static', filename='img/user/art.jpg')}}" alt="Image" class="media-box-object img-circle thumb32">
+                                    </div>
+                                    <div class="media-box-body clearfix">
+                                       <small class="pull-right">Current Time</small>
+                                       <strong class="media-box-heading text-primary">
+                                          <span class="circle circle-success circle-lg text-left"></span>Me</strong>
+                                       <p class="mb-sm">
+                                          <small>{{sp[4:]}}</small>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </a>
+                              <!-- END list group item-->
+                           
+
+                              {% endif %}
+
+
+                              {% if sp.startswith('(YOU)') %}
+
+                              <!-- YOU!!!!!!!!-->
+                        
+                              <a href="#" class="list-group-item">
+                                 <div class="media-box">
+                                    <div class="pull-left">
+                                       <img src="{{ url_for('static', filename='img/user/bla.jpg')}}" alt="Image" class="media-box-object img-circle thumb32">
+                                    </div>
+                                    <div class="media-box-body clearfix">
+                                       <small class="pull-right">Current Time</small>
+                                       <strong class="media-box-heading text-primary">
+                                          <span class="circle circle-success circle-lg text-left"></span>You</strong>
+                                       <p class="mb-sm">
+                                           <small>{{sp[5:]}}</small>
+                                       </p>
+                                    </div>
+                                 </div>
+                              </a>
+                              <!-- END list group item-->
+                           {% endif %}
+                            
+                              {% endfor %}
+
+
+
+                           </div>
+                           <!-- END list group-->
+                           <!-- START panel footer-->
+                                <form action="." method="POST">
+                           <div class="panel-footer clearfix">
+                              <div class="input-group">
+
+
+                                 <input type="text" placeholder="Send message ..." class="form-control input-sm" name="userText">
+                                 <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-default btn-sm">Send
+                                    </input>
+
+                                 </span>
+                               
+                              </div>
+                           </div>
+                           </form>
+                           <!-- END panel-footer-->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- END dashboard main content-->
+               <!-- START dashboard sidebar-->
+        
+               <!-- END dashboard sidebar-->
+            </div>
+         </div>
+      </section>
+      <!-- Page footer-->
+   </div>
+   <!-- =============== VENDOR SCRIPTS ===============-->
+   <!-- MODERNIZR-->
+
+   <!-- DEMO-->
+   <!-- =============== APP SCRIPTS ===============-->
+
+    <script src="{{ url_for('static', filename='js/app.js')}}"></script>
+   <script src="js/app.js"></script>
+</body>
+
+</html>
